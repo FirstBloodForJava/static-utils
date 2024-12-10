@@ -17,5 +17,9 @@ public class Test {
         Response execute = jdkClient.execute(request, Request.Options.options());
 
         System.out.println(execute);
+
+        System.out.println(new String(Util.responseToByte(execute), "UTF-8"));
     }
+
+
 }
