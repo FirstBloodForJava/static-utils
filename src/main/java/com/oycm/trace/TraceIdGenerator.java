@@ -7,6 +7,8 @@ package com.oycm.trace;
 
 import com.oycm.system.IpUtils;
 import com.oycm.system.ProgramUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -17,6 +19,7 @@ import java.util.stream.Collectors;
 
 public class TraceIdGenerator {
 
+    private static Logger log = LoggerFactory.getLogger(TraceIdGenerator.class);
     private static String IP_16 = "00000000";
     private static AtomicInteger count = new AtomicInteger(1000);
 
@@ -126,12 +129,12 @@ public class TraceIdGenerator {
 
 
         List<String> resultList = new ArrayList<>();
-        resultList.add(pid);
-        resultList.add(timeString);
-        resultList.add(ipString);
-        resultList.add(count);
-
-        return resultList.stream().collect(Collectors.joining("    "));
+        resultList.add("pid=" + pid);
+        resultList.add("date=" + timeString);
+        resultList.add("ip=" + ipString);
+        resultList.add("count=" + count);
+        log.info("ip: {}, date: {}, pid: {}, count: {}", ipString, timeString, pid, count);
+        return resultList.stream().collect(Collectors.joining(", "));
 
     }
 }
