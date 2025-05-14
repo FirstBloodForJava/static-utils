@@ -137,4 +137,8 @@ public class TraceIdGenerator {
         return resultList.stream().collect(Collectors.joining(", "));
 
     }
+
+    public static void main(String[] args) {
+        parseTraceId("c0a87d6a174659827725586422987");
+    }
 }
